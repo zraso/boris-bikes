@@ -1,0 +1,1 @@
+A program that emulates all the docking stations, bikes and infrstructure (repair staff, and so on) required to deliver a new bike system ('Boris Bikes') for Transport for London. This network of docking stations is accessible to anyone in London.
