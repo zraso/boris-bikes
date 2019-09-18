@@ -29,10 +29,13 @@ describe DockingStation do
   end
 
   describe '#dock_bike' do
-    it {expect(docked_station.bike).to be_a Bike}
 
     it 'raises an error if bike is already docked' do
+      20.times { docked_station.dock_bike(Bike.new) }
       expect {docked_station.dock_bike(Bike.new)}.to raise_error("BikeAlreadyDocked")
     end
+
+    it {expect(docked_station.bikes[0]).to be_a Bike}
+
   end
 end
