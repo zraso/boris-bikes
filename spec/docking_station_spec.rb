@@ -13,6 +13,10 @@ describe DockingStation do
   #   expect(subject).to respond_to :release_bike
   # end
 
+  describe '#initialize' do
+    it {expect(DockingStation.new(5).capacity).to eq 5}
+    it {expect(DockingStation.new.capacity).to eq 20}
+  end
   # Rspec oneliner syntax:
   describe '#release_bike' do
     it {is_expected.to respond_to :release_bike}
@@ -31,7 +35,7 @@ describe DockingStation do
   describe '#dock_bike' do
 
     it 'raises an error if bike is already docked' do
-      20.times { docked_station.dock_bike(Bike.new) }
+      DockingStation::DEFAULT_CAPACITY.times { docked_station.dock_bike(Bike.new) }
       expect {docked_station.dock_bike(Bike.new)}.to raise_error("BikeAlreadyDocked")
     end
 
