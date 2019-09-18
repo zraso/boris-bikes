@@ -3,6 +3,8 @@ require_relative 'bike'
 class DockingStation
   attr_reader :bikes
 
+  public
+
   def initialize
     @bikes = []
   end
@@ -12,20 +14,37 @@ class DockingStation
   # end
 
   def release_bike
-    if @bikes.length < 1
-      raise "NoBikeClass"
-    else
-      @bikes.pop
-      Bike.new
-    end
+
+    fail 'NoBikeClass' if @bikes.empty?
+    @bikes.pop
+    Bike.new
+
+    # if @bikes.empty?
+    #   raise "NoBikeClass"
+    # else
+    #   @bikes.pop
+    #   Bike.new
+    # end
   end
 
   def dock_bike(bike)
-    if @bikes.size < 20
-      @bikes.push(bike)
-    else
-      raise "BikeAlreadyDocked"
-    end
+
+    fail 'BikeAlreadyDocked' if full? #'self'(instance) not @bikes (instance variable)
+    # if @bikes.full?
+    #   raise "BikeAlreadyDocked"
+    # else
+    @bikes << bike
+    # end
+  end
+
+private
+
+  def full?
+    @bikes.size >= 20 ? true : false
+    #   false
+    # else
+    #   true
+    # end
   end
 
 end
